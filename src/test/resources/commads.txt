@@ -1,0 +1,12 @@
+CRT file generation commands
+----------------------------
+
+keytool -genkey -keyalg RSA -alias selfsigned -keystore "d:\PDFTEST\mykeystore.jks" -validity 365 -keysize 2048
+
+keytool -importkeystore -srckeystore d:\PDFTEST\mykeystore.jks -destkeystore d:\PDFTEST\keystore.p12 -deststoretype PKCS12
+
+keytool -importkeystore -srckeystore d:\PDFTEST\keystore.p12 -srcstoretype pkcs12 -destkeystore d:\PDFTEST\keystore -deststoretype JKS
+
+openssl pkcs12 -in d:\PDFTEST\keystore.p12 -nocerts -nodes -out d:\PDFTEST\mobiliser.key
+
+openssl pkcs12 -in d:\PDFTEST\keystore.p12 -nokeys -out d:\PDFTEST\mobiliser.crt
